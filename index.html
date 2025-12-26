@@ -180,10 +180,11 @@
             max-width: 450px;
             overflow: hidden;
             font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
-            text-align: left;
+            /* CRITICAL FIX: LEFT ALIGN THE TERMINAL TEXT */
+            text-align: left; 
             margin-bottom: 15px;
             box-shadow: 0 10px 30px rgba(0,0,0,0.6);
-            min-height: 120px;
+            min-height: 140px; /* Gives it space so it doesn't jump */
         }
 
         .terminal-header {
@@ -212,21 +213,22 @@
             font-size: 0.8rem;
             line-height: 1.4;
             color: var(--term-text);
-            white-space: pre-wrap; 
+            white-space: pre-wrap; /* Preserves spaces for ASCII art */
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
         }
 
         .line { 
             display: block;
-            margin-bottom: 2px;
-            min-height: 1.2em;
+            word-wrap: break-word; /* Prevents overflow on mobile */
         }
         
-        /* Linux Style Prompt colors */
         .prompt-user { color: var(--term-green); font-weight: bold; }
         
         .cmd { color: #fff; }
         .comment-text { color: var(--term-comment); font-style: italic; }
-        .ascii-bar { color: var(--accent-blue); font-weight: bold; }
+        .ascii-bar { color: var(--accent-blue); font-weight: bold; display: block; }
 
         /* Solid Block Cursor */
         .cursor {
@@ -236,7 +238,6 @@
             background-color: #ccc;
             animation: blink 1s step-end infinite;
             vertical-align: text-bottom;
-            margin-left: 0px; 
         }
 
         .hidden { display: none !important; }
@@ -257,7 +258,7 @@
         <div class="about-card">
             <h2>Web3 Alpha & Skill-Based Earning</h2>
             <p>
-                For active <span class="highlight">Builders</span> and <span class="highlight">Learners</span> only.
+                For active <span class="highlight">Builders</span> and <span class="highlight">Earners</span> only.
             </p>
             <span class="sub-text">Pure Signal. Zero Noise. High Integrity Network.</span>
         </div>
@@ -305,12 +306,11 @@
         // -- CONFIGURATION --
         const text1 = "Execution is the only moat";
         const text2 = "// Couldn't think of anything sensible to write here";
-        const typingSpeed = 100; 
-        const barLength = 25; 
+        const typingSpeed = 80; 
+        const barLength = 20; // Length of ASCII bar
         const pauseEnd = 15000; 
 
         // -- ELEMENTS --
-        const elLine1 = document.getElementById('line1');
         const elType1 = document.getElementById('type1');
         const elCursor1 = document.getElementById('cursor1');
         
@@ -323,18 +323,16 @@
 
         const sleep = (ms) => new Promise(r => setTimeout(r, ms));
 
-        // -- TYPEWRITER FUNCTION --
+        // -- TYPEWRITER --
         async function typeWriter(text, element) {
             element.textContent = "";
             for (let i = 0; i < text.length; i++) {
                 element.textContent += text.charAt(i);
-                // Random variance to make it look human (between 50ms and 150ms)
-                const randomDelay = Math.floor(Math.random() * 100) + 50; 
-                await sleep(randomDelay);
+                await sleep(typingSpeed);
             }
         }
 
-        // -- ASCII BAR ANIMATION --
+        // -- ASCII LOADING --
         async function animateAsciiBar() {
             elLine2.classList.remove('hidden');
             for (let i = 0; i <= barLength; i++) {
@@ -343,5 +341,51 @@
                 const arrow = (i === barLength) ? "" : ">";
                 const percentage = Math.round((i / barLength) * 100);
                 
-                elAsciiBar.textContent = `[${filled}${arrow}${empty}] ${percentage}%`;
+                elAsciiBar.textContent = `Downloading... [${filled}${arrow}${empty}] ${percentage}%`;
+                
+                await sleep(50); // Speed of filling
+            }
+            await sleep(600); // Pause briefly after full
+        }
+
+        // -- MAIN LOOP --
+        async function runTerminal() {
+            while (true) {
+                // RESET
+                elType1.textContent = "";
+                elType2.textContent = "";
+                elAsciiBar.textContent = "";
+                elLine2.classList.add('hidden');
+                elLine3.classList.add('hidden');
+                
+                // Start
+                elCursor1.classList.remove('hidden');
+                elCursor2.classList.add('hidden');
+                
+                // 1. Type First Line
+                await sleep(500);
+                await typeWriter(text1, elType1);
+                
+                // 2. Hide Cursor 1, Run Bar
+                elCursor1.classList.add('hidden');
+                await animateAsciiBar();
+                
+                // 3. Show Line 3 Prompt & Cursor
+                elLine3.classList.remove('hidden');
+                elCursor2.classList.remove('hidden');
+                await sleep(400);
+
+                // 4. Type Comment
+                await typeWriter(text2, elType2);
+
+                // 5. Wait, then loop
+                await sleep(pauseEnd);
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', runTerminal);
+    </script>
+
+</body>
+</html>
 
