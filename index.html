@@ -7,17 +7,27 @@
     <style>
         /* --- CORE STYLES --- */
         :root {
-            --bg-color: #000000;
+            --bg-color: #050505;
             --text-color: #eeeeee;
-            --accent-color: #00ff41;   
+            --accent-green: #00ff41;   
+            --accent-blue: #0055ff;
             --accent-glow: rgba(0, 255, 65, 0.4); 
+            
+            /* Gradient for Buttons */
             --grad-start: #0055ff;
             --grad-end: #00ff41;
-            --card-bg: #111111;
+            
+            --card-bg: rgba(17, 17, 17, 0.8); /* Slight transparency for background effect */
         }
 
         body {
+            /* NEW: Deep Space Background (Blue top-left, Green bottom-right) */
             background-color: var(--bg-color);
+            background-image: 
+                radial-gradient(circle at 10% 10%, rgba(0, 85, 255, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 90% 90%, rgba(0, 255, 65, 0.1) 0%, transparent 50%);
+            background-attachment: fixed; /* Keeps background still while scrolling */
+            
             color: var(--text-color);
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             margin: 0;
@@ -28,44 +38,45 @@
             min-height: 100vh;
         }
 
+        /* FIXED: Wider Container (600px) so it breathes */
         .container {
-            max-width: 480px;
-            width: 90%;
-            margin-top: 50px;
+            max-width: 600px; 
+            width: 88%;
+            margin-top: 60px;
+            padding-bottom: 40px;
             text-align: center;
         }
 
         /* --- LOGO --- */
         .logo-container {
-            /* Increased width so the text is readable */
-            width: 240px;  
-            
-            /* "auto" allows the height to adjust automatically based on the image */
-            height: auto;  
-            
-            margin: 0 auto 10px auto;
+            width: 280px;  /* Increased size for better visibility */
+            height: auto;
+            margin: 0 auto 15px auto;
         }
 
         .logo-container img {
             width: 100%;
             height: auto;
-            display: block; /* Removes invisible spacing at the bottom */
+            display: block;
+            filter: drop-shadow(0 0 20px rgba(0, 255, 65, 0.2)); /* Adds a subtle glow to logo */
         }
-        
 
         h1 {
-            font-size: 2.2rem;
+            font-size: 2.5rem;
             margin: 0;
-            letter-spacing: 1px;
+            letter-spacing: 2px;
             text-transform: uppercase;
             font-weight: 800;
+            background: linear-gradient(to right, #fff, #bbb);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
 
         .tagline {
             color: #888;
-            font-size: 1rem;
-            margin-top: 8px;
-            margin-bottom: 35px;
+            font-size: 1.1rem;
+            margin-top: 10px;
+            margin-bottom: 45px;
             font-style: italic;
             letter-spacing: 0.5px;
         }
@@ -73,66 +84,74 @@
         /* --- ABOUT CARD --- */
         .about-card {
             background: var(--card-bg);
-            padding: 30px 25px;
-            border-radius: 16px;
+            backdrop-filter: blur(10px); /* Blurs the background behind the card */
+            padding: 40px 30px; /* More padding */
+            border-radius: 20px;
             border: 1px solid #222;
-            margin-bottom: 35px;
+            margin-bottom: 40px;
             text-align: center;
-            font-size: 1.1rem;
-            line-height: 1.6;
-            box-shadow: 0 4px 20px rgba(0, 255, 65, 0.1); 
+            font-size: 1.15rem;
+            line-height: 1.7;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5); 
         }
 
         .about-card h2 {
-            font-size: 1.2rem;
+            font-size: 1.3rem;
             color: white;
             margin-top: 0;
-            margin-bottom: 10px;
+            margin-bottom: 15px;
             text-transform: uppercase;
             letter-spacing: 1px;
         }
 
         .highlight {
-            color: var(--accent-color);
+            color: var(--accent-green);
             font-weight: bold;
+            text-shadow: 0 0 10px rgba(0, 255, 65, 0.3);
         }
 
         .sub-text {
             display: block;
-            margin-top: 15px;
-            font-size: 0.9rem;
-            color: #666;
+            margin-top: 20px;
+            font-size: 0.95rem;
+            color: #777;
             font-weight: 500;
+            letter-spacing: 0.5px;
         }
 
         /* --- BUTTONS --- */
         .btn-grid {
             display: flex;
             flex-direction: column;
-            gap: 15px;
+            gap: 20px; /* More space between buttons */
         }
 
         .btn {
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 18px;
-            border-radius: 12px;
+            padding: 20px;
+            border-radius: 14px;
             text-decoration: none;
             font-weight: bold;
-            transition: transform 0.2s, box-shadow 0.2s;
-            font-size: 1.05rem;
+            transition: all 0.2s ease;
+            font-size: 1.1rem;
             gap: 12px; 
+            position: relative;
+            overflow: hidden;
         }
 
-        .btn:hover { transform: translateY(-2px); }
+        .btn:hover { 
+            transform: translateY(-3px); 
+        }
 
-        .btn svg { width: 24px; height: 24px; fill: currentColor; }
+        .btn svg { width: 26px; height: 26px; fill: currentColor; }
 
+        /* Main Gradient Button */
         .btn-main {
             background: linear-gradient(135deg, var(--grad-start), var(--grad-end));
             color: #000;
-            box-shadow: 0 4px 20px var(--accent-glow);
+            box-shadow: 0 4px 20px rgba(0, 85, 255, 0.3);
             text-transform: uppercase;
             letter-spacing: 0.5px;
             border: none;
@@ -142,13 +161,15 @@
             filter: brightness(1.1);
         }
 
+        /* Social Button */
         .btn-social {
-            background: #1a1a1a;
+            background: rgba(255, 255, 255, 0.05);
             color: #ccc;
             border: 1px solid #333;
+            backdrop-filter: blur(5px);
         }
         .btn-social:hover {
-            background: #222;
+            background: rgba(255, 255, 255, 0.1);
             color: white;
             border-color: #555;
         }
@@ -156,31 +177,25 @@
         /* --- FOOTER --- */
         .footer {
             margin-top: auto;
-            padding: 40px 0;
+            padding: 30px 0;
             font-size: 0.8rem;
             color: #444;
         }
 
         .ca-box {
-            background: #080808;
-            padding: 12px;
-            border-radius: 8px;
+            /* Makes it look like a typed terminal command or hidden text */
             font-family: 'Courier New', monospace;
-            color: #777;
-            border: 1px solid #222;
+            color: #333; 
             margin-top: 20px;
-            font-size: 0.8rem;
-            word-break: break-all;
-            user-select: all;
-            cursor: pointer;
+            font-size: 0.75rem;
+            letter-spacing: 1px;
+            opacity: 0.6;
+            transition: opacity 0.3s;
         }
         
-        .ca-label {
-            display: block;
-            font-size: 0.7rem;
-            color: #444;
-            margin-bottom: 5px;
-            text-transform: uppercase;
+        .ca-box:hover {
+            opacity: 1;
+            color: #555;
         }
     </style>
 </head>
@@ -223,12 +238,13 @@
 
         <div class="footer">
             <div class="ca-box">
-                <span class="ca-label">Couldn't think of anything to write here</span>
+                // Couldn't think of anything to write here_
             </div>
-            <p>&copy; 2025 OffTheBlock.</p>
+            <p>&copy; 2026 OffTheBlock.</p>
         </div>
     </div>
 
 </body>
 </html>
+
 
