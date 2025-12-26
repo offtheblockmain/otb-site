@@ -3,14 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Off The Block | Official Gateway</title>
+    <title>OffTheBlock</title>
     <style>
         /* --- CORE STYLES --- */
         :root {
-            --bg-color: #000000; /* Set to pure black to blend with image */
+            --bg-color: #000000;
             --text-color: #eeeeee;
-            --accent-orange: #FF8C00;
-            --accent-glow: rgba(255, 140, 0, 0.4);
+            --accent-color: #00ff41;   
+            --accent-glow: rgba(0, 255, 65, 0.4); 
+            --grad-start: #0055ff;
+            --grad-end: #00ff41;
             --card-bg: #111111;
         }
 
@@ -33,12 +35,11 @@
             text-align: center;
         }
 
-        /* --- LOGO SECTION --- */
+        /* --- LOGO --- */
         .logo-container {
             width: 160px;
             height: 160px;
             margin: 0 auto 15px auto;
-            /* No border/radius needed for the black blend trick */
         }
 
         .logo-container img {
@@ -71,10 +72,10 @@
             border-radius: 16px;
             border: 1px solid #222;
             margin-bottom: 35px;
-            text-align: center; /* Centered looks better for short text */
+            text-align: center;
             font-size: 1.1rem;
             line-height: 1.6;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+            box-shadow: 0 4px 20px rgba(0, 255, 65, 0.1); 
         }
 
         .about-card h2 {
@@ -87,7 +88,7 @@
         }
 
         .highlight {
-            color: var(--accent-orange);
+            color: var(--accent-color);
             font-weight: bold;
         }
 
@@ -116,26 +117,26 @@
             font-weight: bold;
             transition: transform 0.2s, box-shadow 0.2s;
             font-size: 1.05rem;
+            gap: 12px; 
         }
 
-        .btn:hover {
-            transform: translateY(-2px);
-        }
+        .btn:hover { transform: translateY(-2px); }
 
-        /* Telegram Button (Orange/Main) - NOW FIRST */
-        .btn-tg {
-            background: linear-gradient(135deg, #FF8C00, #cc7000);
-            color: white;
+        .btn svg { width: 24px; height: 24px; fill: currentColor; }
+
+        .btn-main {
+            background: linear-gradient(135deg, var(--grad-start), var(--grad-end));
+            color: #000;
             box-shadow: 0 4px 20px var(--accent-glow);
             text-transform: uppercase;
             letter-spacing: 0.5px;
-            border: 1px solid #cc7000;
+            border: none;
         }
-        .btn-tg:hover {
-            box-shadow: 0 6px 25px var(--accent-glow);
+        .btn-main:hover {
+            box-shadow: 0 6px 30px var(--accent-glow);
+            filter: brightness(1.1);
         }
 
-        /* Social Buttons (Grey) */
         .btn-social {
             background: #1a1a1a;
             color: #ccc;
@@ -165,7 +166,7 @@
             margin-top: 20px;
             font-size: 0.8rem;
             word-break: break-all;
-            user-select: all; /* Makes it easy to copy */
+            user-select: all;
             cursor: pointer;
         }
         
@@ -178,11 +179,12 @@
         }
     </style>
 </head>
+
 <body>
 
     <div class="container">
         <div class="logo-container">
-            <img src="otblogo.png" alt="OffTheBlock Logo">
+            <img src="logo.jpg" alt="OffTheBlock Logo">
         </div>
 
         <h1>OffTheBlock</h1>
@@ -193,28 +195,35 @@
             <p>
                 For active <span class="highlight">Builders</span> and <span class="highlight">Learners</span> only.
             </p>
-            <span class="sub-text">No bots. No scams. Verified Humans.</span>
+            <span class="sub-text">Pure Signal. Zero Noise. High Integrity Network.</span>
         </div>
 
         <div class="btn-grid">
-            <a href="YOUR_TELEGRAM_PORTAL_LINK" class="btn btn-tg">
-                ✈️ Join Community
+            
+            <a href="https://t.me/+ymcxwhyY_B5iNGJk" class="btn btn-main">
+                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/>
+                </svg>
+                Join Community
             </a>
 
-            <a href="https://twitter.com/YOUR_HANDLE" class="btn btn-social">
-                ✖️ Follow on X
+            <a href="https://twitter.com/blockballr" class="btn btn-social">
+                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.932ZM17.61 20.644h2.039L6.486 3.24H4.298Z"/>
+                </svg>
+                Follow Blockballr on X
             </a>
             
-            </div>
+        </div>
 
         <div class="footer">
             <div class="ca-box">
-                <span class="ca-label">Official Contract Address</span>
-                0x000000000000000000000000000000000
+                <span class="ca-label">Couldn't think of anything to write here</span>
             </div>
-            <p>&copy; 2026 OffTheBlock.</p>
+            <p>&copy; 2025 OffTheBlock.</p>
         </div>
     </div>
 
 </body>
 </html>
+
