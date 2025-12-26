@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -36,7 +37,7 @@
             min-height: 100vh;
         }
 
-        /* WIDER CONTAINER */
+        /* CONTAINER */
         .container {
             max-width: 650px;
             width: 88%;
@@ -164,7 +165,7 @@
             border-color: #555;
         }
 
-        /* --- FOOTER (VS Code Terminal Style) --- */
+        /* --- FOOTER (TERMINAL) --- */
         .footer {
             margin-top: auto;
             padding: 30px 0;
@@ -175,23 +176,23 @@
         }
 
         .terminal-box {
-            background-color: #1e1e1e; /* VS Code Editor Dark */
+            background-color: #0c0c0c;
             border: 1px solid #333;
             border-radius: 6px;
             width: 100%;
-            max-width: 400px; /* Keep it compact */
+            max-width: 450px;
             overflow: hidden;
             font-family: 'Consolas', 'Courier New', monospace;
             text-align: left;
             margin-bottom: 15px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.6);
         }
 
         .terminal-header {
-            background-color: #2d2d2d;
-            padding: 5px 12px;
+            background-color: #1f1f1f;
+            padding: 6px 12px;
             font-size: 0.7rem;
-            color: #999;
+            color: #888;
             text-transform: uppercase;
             border-bottom: 1px solid #333;
             display: flex;
@@ -199,7 +200,6 @@
             gap: 6px;
         }
         
-        /* Little dots in header to look like window controls */
         .terminal-header::before {
             content: "•••"; 
             letter-spacing: 2px;
@@ -207,20 +207,34 @@
         }
 
         .terminal-content {
-            padding: 12px;
-            font-size: 0.85rem;
-            color: #cccccc;
+            padding: 15px;
+            font-size: 0.8rem;
+            line-height: 1.6;
         }
+
+        .line { display: block; margin-bottom: 5px; }
+        .prompt { color: #00ff41; margin-right: 8px; font-weight: bold; }
+        .cmd { color: #fff; }
+
+        /* The Loading Bar & Text */
+        .download-text { color: #ccc; margin-right: 5px; }
+        .bar-container { color: #0055ff; font-weight: bold; }
+        .status { color: #00ff41; margin-left: 8px; }
 
         .comment-text {
-            color: #6a9955; /* VS Code Comment Green */
+            color: #6a9955; /* Comment Green */
+            font-style: italic;
         }
 
-        /* The Blinking Cursor Animation */
+        /* Blinking Cursor */
         .cursor {
-            color: var(--accent-green);
+            display: inline-block;
+            width: 8px;
+            height: 15px;
+            background-color: var(--accent-green);
             animation: blink 1s step-end infinite;
-            font-weight: bold;
+            vertical-align: middle;
+            margin-left: 4px;
         }
 
         @keyframes blink {
@@ -247,7 +261,7 @@
         <div class="about-card">
             <h2>Web3 Alpha & Skill-Based Earning</h2>
             <p>
-                For active <span class="highlight">Builders</span> and <span class="highlight">Traders</span> only.
+                For active <span class="highlight">Builders</span> and <span class="highlight">Learners</span> only.
             </p>
             <span class="sub-text">Pure Signal. Zero Noise. High Integrity Network.</span>
         </div>
@@ -271,10 +285,24 @@
         <div class="footer">
             <div class="terminal-box">
                 <div class="terminal-header">
-                    <span>TERMINAL</span>
+                    <span>TERMINAL - bash</span>
                 </div>
                 <div class="terminal-content">
-                    <span class="comment-text">// Couldn't think of anything to write here</span><span class="cursor">_</span>
+                    
+                    <div class="line">
+                        <span class="prompt">></span><span class="cmd">Execution is the only moat</span>
+                    </div>
+
+                    <div class="line">
+                        <span class="download-text">Downloading...</span>
+                        <span class="bar-container">[▓▓▓▓▓▓▓▓▓▓▓]</span>
+                        <span class="status">100%</span>
+                    </div>
+
+                    <div class="line">
+                        <span class="comment-text">// Couldn't think of anything sensible to write here</span><span class="cursor"></span>
+                    </div>
+                    
                 </div>
             </div>
             <p class="copyright">&copy; 2026 OffTheBlock.</p>
@@ -283,4 +311,3 @@
 
 </body>
 </html>
-
