@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -14,11 +13,13 @@
             --accent-blue: #0055ff;
             --card-bg: rgba(20, 20, 20, 0.6); 
             
-            /* VS CODE COLORS */
-            --vscode-bg: #1e1e1e;
-            --vscode-header: #252526;
-            --vscode-text: #d4d4d4;
-            --vscode-comment: #6a9955;
+            /* TERMINAL COLORS */
+            --term-bg: #1e1e1e;
+            --term-header: #2d2d2d;
+            --term-text: #cccccc;
+            --term-green: #4af626;
+            --term-blue: #4b96ff;
+            --term-comment: #6a9955;
         }
 
         body {
@@ -161,7 +162,7 @@
             border-color: #555;
         }
 
-        /* --- TERMINAL STYLES --- */
+        /* --- RAW TERMINAL STYLES --- */
         .footer {
             margin-top: auto;
             padding: 30px 0;
@@ -172,104 +173,70 @@
         }
 
         .terminal-box {
-            background-color: var(--vscode-bg);
+            background-color: var(--term-bg);
             border: 1px solid #333;
             border-radius: 6px;
             width: 100%;
             max-width: 450px;
             overflow: hidden;
-            font-family: 'Consolas', 'Courier New', monospace;
+            font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
             text-align: left;
             margin-bottom: 15px;
             box-shadow: 0 10px 30px rgba(0,0,0,0.6);
-            min-height: 100px;
+            min-height: 120px;
         }
 
         .terminal-header {
-            background-color: var(--vscode-header);
+            background-color: var(--term-header);
             padding: 6px 12px;
-            font-size: 0.7rem;
-            color: #999;
-            text-transform: uppercase;
+            font-size: 0.7rem; 
+            color: #aaa;
             border-bottom: 1px solid #333;
             display: flex;
             align-items: center;
-            gap: 6px;
+            justify-content: space-between;
         }
-        .terminal-header::before {
-            content: "•••"; 
+        
+        .header-title {
+            font-weight: bold;
+            color: #ccc;
+        }
+
+        .window-controls {
             letter-spacing: 2px;
             color: #555;
         }
 
         .terminal-content {
             padding: 15px;
-            font-size: 0.85rem;
-            line-height: 1.6;
-            color: var(--vscode-text);
+            font-size: 0.8rem;
+            line-height: 1.4;
+            color: var(--term-text);
+            white-space: pre-wrap; 
         }
 
         .line { 
-            display: flex; 
-            align-items: center; 
-            margin-bottom: 8px; 
-            flex-wrap: wrap; 
-            min-height: 1.2em; 
+            display: block;
+            margin-bottom: 2px;
+            min-height: 1.2em;
         }
         
-        .prompt { color: var(--accent-green); margin-right: 8px; font-weight: bold; }
+        /* Linux Style Prompt colors */
+        .prompt-user { color: var(--term-green); font-weight: bold; }
+        
         .cmd { color: #fff; }
+        .comment-text { color: var(--term-comment); font-style: italic; }
+        .ascii-bar { color: var(--accent-blue); font-weight: bold; }
 
-        /* Progress Bar */
-        .progress-wrapper {
-            position: relative;
-            width: 100%;
-            max-width: 250px;
-            height: 18px;
-            background: #2d2d2d;
-            border: 1px solid #444;
-            margin-right: 10px;
-            display: none; 
-        }
-        
-        .progress-fill {
-            position: absolute;
-            left: 0;
-            top: 0;
-            height: 100%;
-            background-color: var(--accent-green);
-            width: 0%;
-            opacity: 0.9;
-        }
-        
-        .progress-text {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 0.7rem;
-            color: #fff;
-            font-weight: bold;
-            z-index: 2;
-            text-shadow: 0 0 4px #000;
-            letter-spacing: 1px;
-            font-family: 'Consolas', monospace;
-        }
-
-        .status { color: var(--accent-green); margin-left: 8px; display: none; }
-        .comment-text { color: var(--vscode-comment); font-style: italic; }
-
-        /* VS Code Block Cursor */
+        /* Solid Block Cursor */
         .cursor {
             display: inline-block;
-            width: 9px;
-            height: 17px;
-            background-color: #a7a7a7;
+            width: 8px;
+            height: 14px;
+            background-color: #ccc;
             animation: blink 1s step-end infinite;
-            vertical-align: middle;
-            margin-left: 1px;
+            vertical-align: text-bottom;
+            margin-left: 0px; 
         }
 
         .hidden { display: none !important; }
@@ -297,16 +264,11 @@
 
         <div class="btn-grid">
             <a href="https://t.me/+ymcxwhyY_B5iNGJk" class="btn btn-main">
-                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/>
-                </svg>
+                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
                 Join Community
             </a>
-
             <a href="https://twitter.com/blockballr" class="btn btn-social">
-                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.932ZM17.61 20.644h2.039L6.486 3.24H4.298Z"/>
-                </svg>
+                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.932ZM17.61 20.644h2.039L6.486 3.24H4.298Z"/></svg>
                 Follow Blockballr on X
             </a>
         </div>
@@ -314,27 +276,23 @@
         <div class="footer">
             <div class="terminal-box">
                 <div class="terminal-header">
-                    <span>TERMINAL - bash - 80x24</span>
+                    <span class="header-title">blockballr@otb:~</span>
+                    <span class="window-controls">●●●</span>
                 </div>
                 <div class="terminal-content">
                     
-                    <div class="line" id="line1-container">
-                        <span class="prompt">></span>
-                        <span id="type1" class="cmd"></span>
-                        <span id="cursor1" class="cursor hidden"></span>
+                    <div class="line" id="line1">
+                        <span class="prompt-user">blockballr@otb:~$</span>
+                        <span id="type1" class="cmd"></span><span id="cursor1" class="cursor"></span>
                     </div>
 
-                    <div class="line hidden" id="line2-container">
-                        <div class="progress-wrapper" style="display: block;">
-                            <div class="progress-fill" id="fill-bar"></div>
-                            <div class="progress-text">Downloading...</div>
-                        </div>
-                        <span class="status" id="status-text">100%</span>
+                    <div class="line hidden" id="line2">
+                        <span id="ascii-bar" class="ascii-bar"></span>
                     </div>
 
-                    <div class="line hidden" id="line3-container">
-                        <span class="prompt">></span> <span id="type2" class="comment-text"></span>
-                        <span id="cursor2" class="cursor"></span>
+                    <div class="line hidden" id="line3">
+                        <span class="prompt-user">blockballr@otb:~$</span>
+                        <span id="type2" class="comment-text"></span><span id="cursor2" class="cursor"></span>
                     </div>
                     
                 </div>
@@ -344,71 +302,46 @@
     </div>
 
     <script>
+        // -- CONFIGURATION --
         const text1 = "Execution is the only moat";
         const text2 = "// Couldn't think of anything sensible to write here";
-        const typingSpeed = 50; 
-        const loadingDuration = 2000; 
-        const pauseBeforeLoop = 8000; 
+        const typingSpeed = 100; 
+        const barLength = 25; 
+        const pauseEnd = 15000; 
 
+        // -- ELEMENTS --
+        const elLine1 = document.getElementById('line1');
         const elType1 = document.getElementById('type1');
         const elCursor1 = document.getElementById('cursor1');
-        const elLine2 = document.getElementById('line2-container');
-        const elFillBar = document.getElementById('fill-bar');
-        const elStatus = document.getElementById('status-text');
-        const elLine3 = document.getElementById('line3-container');
+        
+        const elLine2 = document.getElementById('line2');
+        const elAsciiBar = document.getElementById('ascii-bar');
+        
+        const elLine3 = document.getElementById('line3');
         const elType2 = document.getElementById('type2');
         const elCursor2 = document.getElementById('cursor2');
 
         const sleep = (ms) => new Promise(r => setTimeout(r, ms));
 
+        // -- TYPEWRITER FUNCTION --
         async function typeWriter(text, element) {
             element.textContent = "";
             for (let i = 0; i < text.length; i++) {
                 element.textContent += text.charAt(i);
-                await sleep(typingSpeed);
+                // Random variance to make it look human (between 50ms and 150ms)
+                const randomDelay = Math.floor(Math.random() * 100) + 50; 
+                await sleep(randomDelay);
             }
         }
 
-        async function runTerminal() {
-            while (true) {
-                // RESET
-                elType1.textContent = "";
-                elType2.textContent = "";
-                elLine2.classList.add('hidden');
-                elLine3.classList.add('hidden');
-                elFillBar.style.width = '0%';
-                elStatus.style.display = 'none';
-                elCursor1.classList.remove('hidden');
-                elCursor2.classList.add('hidden');
-
-                // 1. Type First Line
-                await typeWriter(text1, elType1);
-                elCursor1.classList.add('hidden'); 
-
-                // 2. Loading Bar
-                elLine2.classList.remove('hidden');
-                await sleep(50);
-                elFillBar.style.transition = `width ${loadingDuration}ms ease-out`;
-                elFillBar.style.width = '100%';
-                await sleep(loadingDuration); 
-                elStatus.style.display = 'inline'; 
-
-                // 3. Type Comment
-                await sleep(400);
-                elLine3.classList.remove('hidden');
-                elCursor2.classList.remove('hidden');
-                await typeWriter(text2, elType2);
-
-                // 4. Wait
-                await sleep(pauseBeforeLoop);
+        // -- ASCII BAR ANIMATION --
+        async function animateAsciiBar() {
+            elLine2.classList.remove('hidden');
+            for (let i = 0; i <= barLength; i++) {
+                const filled = "=".repeat(i);
+                const empty = " ".repeat(barLength - i);
+                const arrow = (i === barLength) ? "" : ">";
+                const percentage = Math.round((i / barLength) * 100);
                 
-                // Remove transition for instant reset
-                elFillBar.style.transition = 'none';
-            }
-        }
+                elAsciiBar.textContent = `[${filled}${arrow}${empty}] ${percentage}%`;
 
-        document.addEventListener('DOMContentLoaded', runTerminal);
-    </script>
-
-</body>
-</html>
